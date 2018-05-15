@@ -155,6 +155,7 @@ tasks:
     rollup:
       enable: true
       format: iife # Available formats are amd, cjs, es6, iife or umd
+      context: false
       plugins:
         nodeResolve:
           module: true

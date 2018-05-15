@@ -129,7 +129,8 @@ function js() {
                     }),
                     allowRealFiles: true,
                     plugins: packageConfig.rollup.plugins,
-                    format: packageConfig.rollup.config.format
+                    format: packageConfig.rollup.config.format,
+                    context: packageConfig.rollup.config.context ? packageConfig.rollup.config.context : undefined
                 })
             )
             .pipe(chmod(config.global.chmod))
