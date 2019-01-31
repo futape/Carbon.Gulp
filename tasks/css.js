@@ -94,15 +94,16 @@ for (const KEY in config.packages) {
             POSTCSS_PLUGIN.CUSTOM_MEDIA,
             POSTCSS_PLUGIN.MEDIA_MINMAX,
             POSTCSS_PLUGIN.QUANTITY_QUERIES,
-            POSTCSS_PLUGIN.FIXES(POSTCSS_CONFIGURATION.fixes),
-            POSTCSS_PLUGIN.CSS_MQPACKER({
-                sort: POSTCSS_CONFIGURATION.mqpacker.sort
-                    ? POSTCSS_PLUGIN.SORT_CSS_MEDIA_QUERIES
-                    : false
-            }),
-            POSTCSS_PLUGIN.ROUND_SUBPIXELS,
-            POSTCSS_PLUGIN.REPORTER
+            POSTCSS_PLUGIN.FIXES(POSTCSS_CONFIGURATION.fixes)
         ];
+
+        if (POSTCSS_CONFIGURATION.mqpacker.sort) {
+            postcssConfig.push(POSTCSS_PLUGIN.CSS_MQPACKER({
+                sort: POSTCSS_PLUGIN.SORT_CSS_MEDIA_QUERIES
+            }));
+        }
+
+        postcssConfig.push(POSTCSS_PLUGIN.ROUND_SUBPIXELS, POSTCSS_PLUGIN.REPORTER);
 
         if (POSTCSS_CONFIGURATION.activateRtlCss) {
             postcssConfig.unshift(POSTCSS_PLUGIN.RTL);
